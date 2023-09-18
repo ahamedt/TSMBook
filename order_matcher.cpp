@@ -10,19 +10,9 @@
 #include <mutex>
 #include <condition_variable>
 #include <atomic>
+#include "Order.hpp"
 
-struct Order {
-    std::string action;
-    int id;
-    double price;
-    int quantity;
-    bool operator<(const Order& other) const {
-        return price < other.price; // For the max heap (buy orders)
-    }
-    bool operator>(const Order& other) const {
-        return price > other.price; // For the min heap (sell orders)
-    }
-};
+
 
 void generate_orders(int order_count, const std::string& filename) {
     std::ofstream file(filename);
